@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Schätz das Geld!</title>
+  <meta name="description" content="Touch-Schätzspiel für Kinder rund ums Thema Geld – vom Finance Club der HTL Leonding für den Tag der offenen Tür.">
+  <meta name="theme-color" content="#FFD23F">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Schätz das Geld!">
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/icon.svg">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@600;800&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="club">Finance Club <span>· HTL Leonding · Tag der offenen Tür</span></div>
+      <div class="top-actions">
+        <button class="pill-btn" id="soundBtn" type="button" aria-pressed="true">Ton an</button>
+        <button class="pill-btn" id="homeBtn" type="button" hidden>Neustart</button>
+      </div>
+    </header>
+
+    <!-- Start -->
+    <main class="screen" id="startScreen">
+      <section class="card hero">
+        <div class="coins-row" aria-hidden="true"><div class="coin">€</div><div class="coin">€</div><div class="coin">€</div></div>
+        <h1>Schätz das <em>Geld!</em></h1>
+        <p>Wie viel kostet was? Wie viel verdienen Erwachsene? Schieb die Münze und rate!</p>
+        <button class="big-btn go" id="startBtn" type="button">Los geht's!</button>
+      </section>
+    </main>
+
+    <!-- Question -->
+    <main class="screen" id="quizScreen" hidden>
+      <section class="card">
+        <div class="progress" id="progress"></div>
+        <div class="q-head">
+          <div class="q-emoji" id="qEmoji" aria-hidden="true"></div>
+          <h2 class="q-text" id="qText"></h2>
+        </div>
+        <div class="play">
+          <div class="jar" aria-hidden="true"><div class="jar-fill" id="jarFill"></div><div class="jar-mark" id="jarMark"></div></div>
+          <div class="controls">
+            <div class="value untouched" id="value" aria-live="polite">?</div>
+            <p class="hint" id="hint">Schieb die Münze hin und her!</p>
+            <div class="slider-row">
+              <button class="step-btn" id="minusBtn" type="button" aria-label="Weniger">−</button>
+              <div class="track-wrap">
+                <div class="answer-pin" id="answerPin"><span id="pinLabel">Richtig</span></div>
+                <input type="range" id="slider" aria-label="Deine Schätzung">
+                <div class="scale"><span id="minLabel"></span><span id="maxLabel"></span></div>
+              </div>
+              <button class="step-btn" id="plusBtn" type="button" aria-label="Mehr">+</button>
+            </div>
+            <div class="actions" id="guessActions">
+              <button class="big-btn" id="guessBtn" type="button" disabled>Fertig geschätzt!</button>
+            </div>
+            <div class="reveal" id="reveal">
+              <div class="stars" id="stars"></div>
+              <p class="verdict" id="verdict"></p>
+              <p class="truth" id="truth"></p>
+              <p class="fact" id="fact"></p>
+              <button class="big-btn go" id="nextBtn" type="button">Weiter</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- End -->
+    <main class="screen" id="endScreen" hidden>
+      <section class="card hero">
+        <p class="verdict" id="endTitle"></p>
+        <div class="score-big"><span id="endStars">0</span> <small>von <span id="endMax">0</span> Sternen</small></div>
+        <div class="stars" id="endStarsRow" aria-hidden="true"></div>
+        <p id="endText"></p>
+        <button class="big-btn go" id="againBtn" type="button">Nochmal spielen</button>
+        <span class="idle-note">Startet gleich von selbst neu für das nächste Kind.</span>
+      </section>
+    </main>
+  </div>
+  <canvas id="confetti"></canvas>
+
+  <script src="js/questions.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
