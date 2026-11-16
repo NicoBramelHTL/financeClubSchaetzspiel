@@ -61,8 +61,8 @@ Alle Fragen stehen in [`js/questions.js`](js/questions.js):
 
 ```js
 { emoji: "🍦", q: "Wie viel kostet eine Kugel Eis in der Eisdiele?",
-  min: 0, max: 5, step: 0.1, unit: "€", answer: 2,
-  fact: "Vor 20 Jahren hat eine Kugel oft nur 70 Cent gekostet. ..." },
+  min: 0, max: 5, step: 0.1, unit: "€", answer: 2.2,
+  fact: "In Linz kostet eine Kugel im Schnitt sogar 2,30 €. ..." },
 ```
 
 | Feld | Bedeutung |
@@ -81,7 +81,26 @@ Alle Fragen stehen in [`js/questions.js`](js/questions.js):
 - Rundenanzahl und Leerlaufzeit stehen oben in [`js/game.js`](js/game.js) (`ROUNDS`, `IDLE_MS`).
 - Nach Änderungen die Versionsnummer `CACHE` in [`sw.js`](sw.js) erhöhen, sonst zeigen Tablets mit Offline-Cache noch die alte Version.
 
-> Die Zahlen sind gerundete Richtwerte für Österreich (Stand ca. 2024/25) und sollten vor dem Einsatz gegengeprüft werden.
+## Quellen
+
+Die Zahlen sind gerundete Werte für Österreich, geprüft im November 2026. Preise schwanken je nach Ort und Geschäft.
+
+| Frage | Antwort | Quelle |
+| --- | --- | --- |
+| Kugel Eis | 2,20 € (Linz 2,30 €, 2020: 1,65 €) | Umfrage coupons.de 2025, Orderbird-Eisreport 2023 |
+| Leberkässemmel | 3,50 € (Spanne 2,50–4,65 €) | [Salzburg24-Test](https://www.salzburg24.at/news/salzburg/leberkaessemmerl-im-test-wo-gibts-das-beste-in-salzburg-art-329104), Speisekarten |
+| Semmel im Supermarkt | 0,35 € (Diskonter 15 Cent, Bäcker bis 89 Cent) | [VKI-Semmeltest via news.at](https://www.news.at/news/semmel-preis-leistung) |
+| Kinoticket | 11 € | **Schätzwert**, keine österreichische Statistik gefunden (Deutschland 2025: 10,05 € laut FFA); 20 € pro Besuch inkl. Verpflegung laut Marketagent/Statista |
+| Liter Vollmilch | 1,30 € (günstigste 1,05–1,40 €) | [AK Wien Preismonitor](https://wien.arbeiterkammer.at/beratung/konsumentenschutz/einkaufundrecht/Preisemonitor_202603.pdf), [VKI-Preisvergleich](https://vki.at/system/files/2024-12/2024-12-19_PA_Preisvergleich_DE.pdf) |
+| Taschengeld 10 Jahre | 12 € pro Monat (Empfehlung 8–14 €) | [oesterreich.gv.at](https://www.oesterreich.gv.at/de/themen/steuern_und_finanzen/jugendrechte-finanzen/Seite.1740306) |
+| 1-Euro-Münze | 7,5 g | Europäische Zentralbank |
+| Euro-Bargeld | 1. Jänner 2002 | Oesterreichische Nationalbank |
+| Wochenarbeitszeit | 40 Std. | Arbeitszeitgesetz, [Statistik Austria](https://www.statistik.at/fileadmin/announcement/2025/12/20251218WoechentlicheNormalarbeitszeit2024.pdf) |
+| Netto-Monatsgehalt | 2.700 € | [Statistik Austria](https://www.statistik.at/statistiken/bevoelkerung-und-soziales/einkommen-und-soziale-lage/jaehrliche-personeneinkommen): Median Vollzeit 2024 = 55.678 € brutto/Jahr ≈ 3.980 € × 14; netto selbst berechnet |
+| HTL-Einstiegsgehalt | 3.000 € brutto (2.900–3.150 €) | [trend.at](https://www.trend.at/karriere/aktuelle-gehaelter-junger-absolventen), Stellenanzeigen |
+| Haushaltsausgaben/Jahr | 50.000 € (4.170 €/Monat) | [Statistik Austria, Konsumerhebung 2024/25](https://www.statistik.at/fileadmin/announcement/2026/03/20260304Konsumerhebung202425.pdf) |
+| Gebrauchtwagen | 28.000 € | [AutoScout24-Preisindex Juni 2026](https://www.autoscout24.at/unternehmen/agpi/); 443 €/Monat Neuwagen-Finanzierung laut [Aramis/OpinionWay](https://www.leadersnet.at/news/101506,fuer-viele-oesterreicher-wird-das-auto-immer-mehr-zum-luxus.html) |
+| Weihnachtsgeschenke | 390 € | [Handelsverband 2025](https://www.leadersnet.at/news/95379,oesterreicher-geben-heuer-389-euro-fuer-weihnachtsgeschenke-aus.html) |
 
 ## Projektstruktur
 
