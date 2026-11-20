@@ -4,6 +4,7 @@ Ein Schätzspiel für Kinder rund ums Thema Geld, gebaut für den **Tag der offe
 Alle Zahlen beziehen sich auf **Österreich**.
 
 **Spielen:** https://nicobramelhtl.github.io/financeClubSchaetzspiel/
+
 Die Kinder schätzen mit einem großen Schieberegler Preise, Gehälter und Ausgaben, zum Beispiel was eine Kugel Eis oder
 eine Leberkässemmel kostet oder wie viel Geld ein Erwachsener im Monat aufs Konto bekommt. Danach sehen sie die richtige Antwort, bekommen
 0 bis 3 Sterne und lernen einen kurzen Fakt dazu.
