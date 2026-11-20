@@ -8,6 +8,23 @@ const slider = $("slider");
 
 let deck = [], idx = 0, totalStars = 0, touched = false, revealed = false, soundOn = true;
 
+// Feste Bühne aufs Display skalieren (siehe css/style.css): passt immer, nie scrollen
+const STAGE = { landscape: { w: 1000, h: 625 }, portrait: { w: 680, h: 1000 } };
+const app = document.querySelector(".app");
+function fit() {
+  const vw = window.visualViewport ? visualViewport.width : innerWidth;
+  const vh = window.visualViewport ? visualViewport.height : innerHeight;
+  const portrait = vh > vw * 1.15;
+  document.documentElement.classList.toggle("portrait", portrait);
+  const st = portrait ? STAGE.portrait : STAGE.landscape;
+  const s = Math.min(vw / st.w, vh / st.h);
+  app.style.transform = `translate(${(vw - st.w * s) / 2}px, ${(vh - st.h * s) / 2}px) scale(${s})`;
+}
+fit();
+addEventListener("resize", fit);
+addEventListener("orientationchange", () => setTimeout(fit, 200));
+window.visualViewport?.addEventListener("resize", fit);
+
 function fmt(v, q) {
   if (q.unit === "year") return String(Math.round(v));
   const decimals = q.step < 1 ? (q.unit === "€" ? 2 : 1) : 0;

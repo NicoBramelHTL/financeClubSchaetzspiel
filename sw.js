@@ -1,6 +1,7 @@
 // Cacht alle Spieldateien, damit das Spiel am Stand auch ohne WLAN läuft.
+// Mit Internet wird immer die neueste Version geladen, ohne Internet die gespeicherte.
 // Nach Änderungen an Dateien die Versionsnummer erhöhen.
-const CACHE = "schaetz-das-geld-v4";
+const CACHE = "schaetz-das-geld-v5";
 const FILES = [
   "./",
   "index.html",
@@ -23,17 +24,23 @@ self.addEventListener("activate", (e) => {
   );
 });
 
-// Cache first; Google Fonts werden beim ersten Laden mitgecacht
+// Network first (max. 3 s), sonst Cache. Google Fonts werden mitgecacht.
 self.addEventListener("fetch", (e) => {
   if (e.request.method !== "GET") return;
+  const url = new URL(e.request.url);
+  const cacheable = url.origin === location.origin || url.host.endsWith("fonts.googleapis.com") || url.host.endsWith("fonts.gstatic.com");
+  if (!cacheable) return;
+  const fromNetwork = fetch(e.request).then((res) => {
+    if (res.ok) {
+      const copy = res.clone();
+      caches.open(CACHE).then((c) => c.put(e.request, copy));
+    }
+    return res;
+  });
+  const timeout = new Promise((_, reject) => setTimeout(() => reject(new Error("timeout")), 3000));
   e.respondWith(
-    caches.match(e.request).then((hit) => hit || fetch(e.request).then((res) => {
-      const url = new URL(e.request.url);
-      if (res.ok && (url.origin === location.origin || url.host.endsWith("fonts.googleapis.com") || url.host.endsWith("fonts.gstatic.com"))) {
-        const copy = res.clone();
-        caches.open(CACHE).then((c) => c.put(e.request, copy));
-      }
-      return res;
-    }))
+    Promise.race([fromNetwork, timeout]).catch(() =>
+      caches.match(e.request).then((hit) => hit || fromNetwork)
+    )
   );
 });
