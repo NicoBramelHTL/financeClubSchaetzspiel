@@ -186,18 +186,27 @@ input[type=range]::-moz-range-thumb {
 .actions { display: flex; justify-content: center; }
 
 /* Reveal panel */
-.reveal { display: none; gap: 10px; text-align: center; justify-items: center; }
+/* Ergebnis links, Weiter-Knopf rechts daneben: spart Höhe auf kleinen Tablets */
+.reveal {
+  display: none; gap: 6px 20px; align-items: center;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: "head btn" "text btn";
+}
 .reveal.show { display: grid; animation: pop .35s ease-out; }
+.reveal-head { grid-area: head; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.reveal-text { grid-area: text; display: grid; gap: 4px; min-width: 0; }
+#nextBtn { grid-area: btn; }
 @keyframes pop { from { transform: scale(.92); opacity: 0; } }
 .stars { display: flex; gap: 8px; }
-.stars svg { width: 52px; height: 52px; }
+.stars svg { width: 46px; height: 46px; }
 .stars svg.on { animation: starpop .4s backwards; }
 .stars svg:nth-child(2) { animation-delay: .15s; } .stars svg:nth-child(3) { animation-delay: .3s; }
 @keyframes starpop { from { transform: scale(0) rotate(-40deg); } 70% { transform: scale(1.25); } }
 .verdict { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.5rem, 3.4vw, 2rem); margin: 0; }
 .truth { margin: 0; font-size: 1.2rem; }
 .truth b { color: var(--coral); font-size: 1.4rem; }
-.fact { margin: 0; color: var(--ink-soft); max-width: 52ch; font-size: 1.05rem; text-wrap: pretty; }
+.fact { margin: 0; color: var(--ink-soft); font-size: 1.05rem; text-wrap: pretty; }
+.hero .stars { justify-content: center; }
 
 .score-big { font-family: var(--font-display); font-weight: 800; font-size: clamp(3rem, 9vw, 5.5rem); line-height: 1; }
 .score-big small { font-size: .45em; color: var(--ink-soft); }
@@ -210,10 +219,38 @@ input[type=range]::-moz-range-thumb {
   .jar { display: none; }
   .slider-row { grid-template-columns: 52px minmax(0, 1fr) 52px; gap: 8px; }
   .step-btn { width: 52px; height: 52px; font-size: 1.6rem; }
+  .reveal { grid-template-columns: 1fr; grid-template-areas: "head" "text" "btn"; justify-items: center; text-align: center; }
+  .reveal-head { justify-content: center; }
 }
-@media (max-height: 640px) {
-  .jar { height: 170px; }
+/* Kleine Tablets im Querformat: alles enger, damit nichts gescrollt werden muss */
+@media (max-height: 760px) {
+  .app { padding-block: 8px 12px; gap: 8px; }
+  .card { padding: 14px 22px; border-radius: 22px; box-shadow: 0 6px 0 var(--ink); }
+  .progress { margin-bottom: 8px; }
+  .progress i { height: 8px; }
+  .q-head { margin-bottom: 4px; gap: 12px; }
   .q-emoji { font-size: 2.4rem; }
+  .q-text { font-size: clamp(1.2rem, 2.8vw, 1.75rem); }
+  .play { gap: 20px; }
+  .jar { height: 170px; width: 110px; }
+  .controls { gap: 8px; }
+  .value { font-size: clamp(2.2rem, 5.5vw, 3.2rem); }
+  .hint { margin-top: -4px; font-size: .95rem; }
+  input[type=range] { height: 64px; }
+  .scale { margin-top: -8px; }
+  .big-btn { min-height: 60px; padding: 8px 30px; font-size: clamp(1.3rem, 3vw, 1.6rem); box-shadow: 0 5px 0 var(--ink); }
+  .stars svg { width: 38px; height: 38px; }
+  .verdict { font-size: clamp(1.25rem, 2.8vw, 1.6rem); }
+  .truth { font-size: 1.05rem; }
+  .truth b { font-size: 1.2rem; }
+  .fact { font-size: .95rem; }
+}
+@media (max-height: 560px) {
+  .club { font-size: .9rem; }
+  .pill-btn { padding: 3px 12px; font-size: .85rem; }
+  .jar { height: 130px; width: 96px; }
+  .q-emoji { font-size: 2rem; }
+  .hint { font-size: .85rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }

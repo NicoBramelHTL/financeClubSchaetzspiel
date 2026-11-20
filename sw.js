@@ -1,6 +1,6 @@
 // Cacht alle Spieldateien, damit das Spiel am Stand auch ohne WLAN läuft.
 // Nach Änderungen an Dateien die Versionsnummer erhöhen.
-const CACHE = "schaetz-das-geld-v3";
+const CACHE = "schaetz-das-geld-v4";
 const FILES = [
   "./",
   "index.html",
